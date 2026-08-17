@@ -1,28 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ShambhoMART — Quality You Can Trust.</title>
-<meta name="description" content="ShambhoMART — quality products, affordable prices and trusted service.">
-<link rel="stylesheet" href="styles.css?v=9">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ShambhoMART — Quality You Can Trust</title>
+<meta name="description" content="ShambhoMART — quality products, trusted service and easy WhatsApp enquiries.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="top"><span>★ Best Quality</span><span>◆ Best Price</span><span>♢ Trusted Service</span><span class="top-right">☎ 7498169710</span></div>
-<header class="header">
-  <a class="brand" href="#home"><img src="assets/shambhomart-logo.png" alt="ShambhoMART logo"><div><strong>SHAMBHO <em>MART</em></strong><small>Quality You Can Trust.</small></div></a>
-  <div class="search"><input id="searchInput" placeholder="Search for products..."><select id="searchCategory"><option value="All">All Categories</option><option>Kitchen</option><option>Storage</option><option>Lifestyle</option></select><button id="searchBtn">⌕</button></div>
-  <div class="head-actions"><a href="#contact">♙<small>Login / Sign Up</small></a><a href="#shop">♡<small>Wishlist</small></a><button id="cartBtn">🛒<small>Cart <b id="cartCount">0</b></small></button></div>
+<div class="topbar"><div class="top-left"><span>★ Best Quality</span><span>◇ Best Price</span><span>♢ Trusted Service</span></div><div class="top-right"><span>⇄ Track Order</span><span>◷ Help &amp; Support</span><a href="tel:+917498169710">☎ 7498169710</a></div></div>
+<header class="site-header">
+  <a href="#home" class="brand"><img src="assets/shambhomart-logo.png" alt="ShambhoMART logo"><div><div class="brand-name">SHAMBHO <b>MART</b></div><div class="tagline">— Quality You Can Trust. —</div></div></a>
+  <div class="search"><input id="searchInput" placeholder="Search for products..." aria-label="Search products"><select id="categorySelect"><option value="All">All Categories</option><option>Kitchen</option><option>Home &amp; Living</option><option>Storage</option><option>Bottles</option></select><button id="searchBtn">⌕</button></div>
+  <div class="head-actions"><button>♙<small>Login / Sign Up</small></button><button>♡<small>Wishlist</small></button><button id="cartBtn">🛒<i id="cartCount">0</i><small>Cart</small></button></div>
 </header>
-<nav class="nav"><button class="catbtn">☰ All Categories</button><a class="active" href="#home">Home</a><a href="#shop">Kitchen</a><a href="#shop">Home & Living</a><a href="#shop">Storage</a><a href="#shop">Bottles</a><a href="#shop">Cleaning</a><a href="#shop">Offers</a><a href="#contact">Contact Us</a></nav>
+<nav class="nav"><button class="all-cat">☰ &nbsp; All Categories</button><a class="active" href="#home">Home</a><a href="#shop" data-filter-link="Kitchen">Kitchen</a><a href="#shop" data-filter-link="Home & Living">Home &amp; Living</a><a href="#shop" data-filter-link="Storage">Storage</a><a href="#shop" data-filter-link="Bottles">Bottles</a><a href="#shop">Cleaning</a><a href="#shop">Offers</a><a href="#contact">Contact Us</a></nav>
 <main id="home">
-<section class="hero"><img src="assets/shambhomart-hero-banner.jpg" alt="Welcome to ShambhoMART — Smart Shopping Starts Here"><div class="hero-cta"><a href="#shop">SHOP NOW</a><a href="https://wa.me/917498169710?text=Hi%20ShambhoMART%2C%20I%20want%20to%20know%20about%20your%20products." target="_blank" rel="noopener">WHATSAPP US</a></div></section>
-<section class="benefits"><div>🛍️ <b>Wide Range</b><small>Home & Kitchen Products</small></div><div>🏅 <b>Premium Quality</b><small>You Can Trust</small></div><div>🚚 <b>Fast & Safe</b><small>Delivery Across India</small></div><div>🎧 <b>Customer Support</b><small>Great Service</small></div></section>
-<section class="section" id="shop"><div class="title"><div><span>FEATURED COLLECTION</span><h1>SHOP OUR BESTSELLERS</h1><p>Top quality products for your everyday needs</p></div><div class="filters"><button class="filter active" data-filter="All">All Products</button><button class="filter" data-filter="Kitchen">Kitchen</button><button class="filter" data-filter="Storage">Storage</button><button class="filter" data-filter="Lifestyle">Lifestyle</button></div></div><div class="grid" id="productGrid"></div></section>
-<section class="why"><div><span>WHY SHAMBHOMART</span><h2>Smart shopping starts with trust.</h2></div><div class="whygrid"><article><b>01</b><h3>Quality Products</h3><p>Carefully selected useful products for everyday needs.</p></article><article><b>02</b><h3>Affordable Value</h3><p>Promotional offers and value-focused product picks.</p></article><article><b>03</b><h3>Easy Support</h3><p>Message us directly on WhatsApp for questions and orders.</p></article></div></section>
-<section class="contact" id="contact"><div><span>NEED HELP?</span><h2>Have a product in mind?</h2><p>Contact ShambhoMART for product information and order enquiries.</p></div><a href="https://wa.me/917498169710?text=Hi%20ShambhoMART%2C%20I%20have%20a%20product%20enquiry." target="_blank" rel="noopener">CHAT ON WHATSAPP →</a></section>
+<section class="hero-wrap"><img class="hero-banner" src="assets/shambhomart-hero-banner.jpg" alt="Welcome to ShambhoMART"></section>
+<section class="shop-section" id="shop">
+  <div class="shop-title"><span></span><div><h1>SHOP OUR BESTSELLERS</h1><p>Top quality products for your everyday needs</p></div><span></span></div>
+  <div class="filters"><button class="filter active" data-filter="All">▦ &nbsp;All Products</button><button class="filter" data-filter="Kitchen">♧ Kitchen</button><button class="filter" data-filter="Storage">▱ Storage</button><button class="filter" data-filter="Bottles">♙ Bottles</button><button class="filter" data-filter="Home & Living">⌂ Home &amp; Living</button></div>
+  <div id="productGrid" class="product-grid"></div>
+</section>
+<section class="why" id="contact"><div><p class="eyebrow">SHAMBHOMART</p><h2>Quality products.<br><span>Simple ordering.</span></h2><p>Browse our curated everyday products and use WhatsApp for product questions or order enquiries.</p></div><a class="whatsapp-big" href="https://wa.me/917498169710?text=Hi%20ShambhoMART%2C%20I%20want%20help%20choosing%20a%20product." target="_blank" rel="noopener">💬 Chat on WhatsApp</a></section>
 </main>
-<footer><div class="footbrand"><img src="assets/shambhomart-logo.png"><div><b>SHAMBHO<span>MART</span></b><small>Quality You Can Trust.</small></div></div><p>© <span id="year"></span> ShambhoMART. All rights reserved.</p><a href="https://wa.me/917498169710" target="_blank" rel="noopener">WhatsApp: 7498169710</a></footer>
-<div class="modal" id="productModal"><div class="modal-card"><button class="close" id="closeProduct">×</button><div class="gallery"><div class="thumbs" id="thumbs"></div><img id="mainImage" alt="Product"></div><div class="details"><span id="modalCat"></span><h2 id="modalTitle"></h2><p id="modalDesc"></p><p class="size" id="modalSize"></p><ul id="modalFeatures"></ul><div class="modal-actions"><a id="modalShop" target="_blank" rel="noopener">VIEW OFFER →</a><a id="modalWA" target="_blank" rel="noopener">WHATSAPP →</a></div></div></div></div>
-<aside class="drawer" id="drawer"><div class="drawer-head"><h2>Your Selection</h2><button id="closeCart">×</button></div><div id="cartItems"></div><button class="order" id="whatsappOrder">ORDER VIA WHATSAPP →</button><button class="clear" id="clearCart">Clear selection</button></aside><div class="overlay" id="overlay"></div>
+<footer><img src="assets/shambhomart-logo.png" alt="ShambhoMART"><div>© <span id="year"></span> ShambhoMART · Quality You Can Trust.</div><a href="https://wa.me/917498169710" target="_blank" rel="noopener">WhatsApp: 7498169710</a></footer>
+<aside id="cartDrawer" class="cart-drawer" aria-hidden="true"><div class="cart-head"><h3>Your Selection</h3><button id="closeCart">×</button></div><div id="cartItems"></div><div class="cart-bottom"><button id="whatsappOrder">Order via WhatsApp →</button><button id="clearCart">Clear selection</button></div></aside><div id="overlay"></div>
+<div id="modal" class="modal"><div class="modal-card"><button id="closeModal">×</button><div id="modalBody"></div></div></div>
 <script src="app.js"></script>
 </body></html>

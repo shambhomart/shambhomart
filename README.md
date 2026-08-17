@@ -1,15 +1,15 @@
-# ShambhoMART — Final Static Website
+# ShambhoMART — Homepage V6
 
-GitHub Pages-ready static e-commerce storefront.
+Static GitHub Pages-ready ecommerce homepage matching the supplied desktop reference: compact header, search, navigation, real ShambhoMART logo/banner, four product cards, category filters, responsive layout and WhatsApp enquiry flow.
 
-## V9 UI fix
-- Compact 50px desktop / 44px mobile header logo
-- Header is explicitly non-sticky
-- Reduced header height
-- Removed duplicate CSS
-- Uses the supplied ShambhoMART logo and hero banner
-- Includes 4 products
-- No fixed product prices
-- WhatsApp enquiry/order buttons
+## Files
+- `index.html`
+- `styles.css`
+- `app.js`
+- `assets/` with supplied logo, hero banner and product images
 
-Upload the CONTENTS of this folder to the repository root so `index.html` is at the root.
+## Deploy
+Upload all files/folders in this package to the repository root and keep `index.html` at the root. GitHub Pages can then deploy from `main`.
+
+No fixed product prices are shown.
+WhatsApp: +91 74981 69710.
