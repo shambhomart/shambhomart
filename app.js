@@ -57,6 +57,7 @@ const products = [
 
 let cart = JSON.parse(localStorage.getItem("shambhoCart") || "[]");
 let activeFilter = "All";
+let currentProductId = 1;
 
 const grid = document.getElementById("productGrid");
 const count = document.getElementById("cartCount");
@@ -87,6 +88,7 @@ function renderProducts(){
 function showProduct(id){
   const p = products.find(x => x.id === id);
   if(!p) return;
+  currentProductId = id;
   const modal = document.getElementById("productModal");
   modal.querySelector(".modal-gallery").innerHTML = p.images.map((img,i) =>
     `<button class="thumb ${i===0?'selected':''}" onclick="selectProductImage('${img}', this)">
@@ -153,3 +155,18 @@ document.getElementById("closeProduct").onclick=closeProduct;
 document.getElementById("productModal").addEventListener("click", e => {
   if(e.target.id === "productModal") closeProduct();
 });
+
+
+function applySearch(){
+  const q=(document.getElementById("searchInput").value||"").trim().toLowerCase();
+  const cat=document.getElementById("searchCategory").value;
+  const list=products.filter(p=>{
+    const matchesCat=cat==="All" || p.category===cat;
+    const hay=(p.name+" "+p.desc+" "+p.features.join(" ")).toLowerCase();
+    return matchesCat && (!q || hay.includes(q));
+  });
+  grid.innerHTML=list.map(p=>`<article class="product"><div class="product-image"><span class="badge">${p.badge}</span><img src="${p.images[0]}" alt="${p.name}"></div><div class="product-info"><div class="product-cat">${p.category}</div><h3>${p.name}</h3><p>${p.desc}</p><div class="product-actions"><button class="add" onclick="showProduct(${p.id})">View Product</button><button class="ask" onclick="askProduct(${p.id})">WhatsApp</button></div></div></article>`).join("");
+}
+document.getElementById("searchBtn").onclick=applySearch;
+document.getElementById("searchInput").addEventListener("keydown",e=>{if(e.key==="Enter")applySearch()});
+document.getElementById("searchCategory").addEventListener("change",applySearch);

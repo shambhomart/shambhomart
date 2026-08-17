@@ -48,3 +48,11 @@ Fixed price is not displayed on the website.
 5-piece set: 160 ml, 300 ml, 500 ml, 600 ml and 1000 ml. Supplied creatives show dishwasher safe, fridge/freezer safe, rust free, easy to clean, BPA free and Made in India claims.
 Affiliate link: https://fktr.in/tVzv2ts
 Fixed price is not displayed on the website.
+
+## V7 Premium Homepage
+- Uses the exact supplied ShambhoMART logo and welcome banner in `assets/shambhomart-logo.png` and `assets/shambhomart-hero-banner.jpg`.
+- Premium storefront header with search, categories, account/wishlist/cart controls and navigation.
+- Hero banner with Shop Bestsellers and WhatsApp actions.
+- Bestseller product grid for all 4 current products.
+- Product search and category filtering.
+- No fixed product prices are shown.
