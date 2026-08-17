@@ -27,3 +27,24 @@ No paid hosting/server is required for this version.
 
 ## Product added in V2
 Airtight Kitchen Storage Container – 1.1L, with five supplied product images and Flipkart shop link. No fixed price is displayed.
+
+
+## Products in V3
+- Airtight Kitchen Storage Container – 1.1L
+- 2-IN-1 Oil Sprayer & Pour Bottle
+
+Both products use supplied product images and current affiliate links. Fixed prices are intentionally not displayed.
+
+
+## Product 3
+500ml Mini Chopper — supplied ShambhoMART product creatives, feature set and affiliate link included. No fixed price is displayed.
+
+## Product 3 — Premium Stainless Steel Bottle
+1 Litre stainless steel bottle. Product source creatives and captions supplied by the user.
+Affiliate link: https://fktr.in/l2lUkZq
+Fixed price is not displayed on the website.
+
+## Product 4 — Stainless Steel Food Storage Containers
+5-piece set: 160 ml, 300 ml, 500 ml, 600 ml and 1000 ml. Supplied creatives show dishwasher safe, fridge/freezer safe, rust free, easy to clean, BPA free and Made in India claims.
+Affiliate link: https://fktr.in/tVzv2ts
+Fixed price is not displayed on the website.

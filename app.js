@@ -8,17 +8,50 @@ const products = [
     icon:"🫙",
     badge:"Bestseller",
     desc:"Smart, transparent storage for grains, snacks, spices and everyday kitchen essentials.",
-    images:[
-      "assets/storage-container-1.jpeg",
-      "assets/storage-container-2.jpeg",
-      "assets/storage-container-3.jpeg",
-      "assets/storage-container-4.jpeg",
-      "assets/storage-container-5.jpeg"
-    ],
+    images:["assets/storage-container-1.jpeg","assets/storage-container-2.jpeg","assets/storage-container-3.jpeg","assets/storage-container-4.jpeg","assets/storage-container-5.jpeg"],
     features:["Airtight Seal","BPA Free Material","Stackable Design","Transparent Body"],
     size:"1.1 L",
     dimensions:"16 cm height × 10.5 cm width",
     link:"https://fktr.in/A00I4I7"
+  },
+  {
+    id:2,
+    name:"2-IN-1 Oil Sprayer & Pour Bottle",
+    category:"Kitchen",
+    icon:"🫗",
+    badge:"Trending",
+    desc:"Spray or pour from one smart kitchen bottle for controlled oil use and convenient cooking.",
+    images:["assets/oil-sprayer-1.png","assets/oil-sprayer-2.jpeg","assets/oil-sprayer-3.jpeg","assets/oil-sprayer-4.jpeg","assets/oil-sprayer-5.jpeg","assets/oil-sprayer-6.jpeg"],
+    features:["2-IN-1 Spray & Pour","Fine Mist Spray","Leak-Proof Design","Borosilicate Glass Bottle","Easy to Clean","Ergonomic Handle"],
+    size:"2-IN-1",
+    dimensions:"Approx. 7.21 in height × 4.08 in width",
+    link:"https://fktr.in/BiMH68X"
+  },
+  {
+    id:3,
+    name:"Premium Stainless Steel Bottle",
+    category:"Lifestyle",
+    icon:"🥤",
+    badge:"Premium Pick",
+    desc:"A stylish 1-litre stainless steel bottle for everyday hydration at your desk, gym, office or while travelling.",
+    images:["assets/bottle-1.jpeg","assets/bottle-2.jpeg","assets/bottle-3.jpeg","assets/bottle-4.jpeg","assets/bottle-5.jpeg","assets/bottle-6.jpeg"],
+    features:["BPA Free","Leak Proof","1 Litre Capacity","Easy to Carry","Non-Toxic","Multi-Purpose"],
+    size:"1 Litre",
+    dimensions:"27 cm height × 8 cm width",
+    link:"https://fktr.in/l2lUkZq"
+  },
+  {
+    id:4,
+    name:"Stainless Steel Food Storage Containers – 5 Piece Set",
+    category:"Storage",
+    icon:"🥣",
+    badge:"Premium Pick",
+    desc:"A practical stainless steel storage set with five stackable containers and easy-to-clean lids for everyday kitchen use.",
+    images:["assets/storage-set-1.jpeg","assets/storage-set-2.jpeg","assets/storage-set-3.jpeg","assets/storage-set-4.jpeg","assets/storage-set-5.jpeg"],
+    features:["5-Piece Set","Stainless Steel","Dishwasher Safe","Fridge & Freezer Safe","Rust Free","Easy to Clean","BPA Free","Made in India"],
+    size:"5 Piece Set",
+    dimensions:"160 ml • 300 ml • 500 ml • 600 ml • 1000 ml",
+    link:"https://fktr.in/tVzv2ts"
   }
 ];
 
