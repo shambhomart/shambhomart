@@ -14,8 +14,26 @@ document.querySelectorAll('[data-filter-link]').forEach(a=>a.onclick=e=>{e.preve
 document.getElementById('searchBtn').onclick=()=>{const q=document.getElementById('searchInput').value.toLowerCase().trim();if(!q){setFilter('All');return}const list=products.filter(p=>(p.name+' '+p.category+' '+p.desc).toLowerCase().includes(q));grid.innerHTML=list.map(p=>`<article class="product"><div class="product-img"><span class="badge">${p.badge}</span><img src="${p.image}" alt="${p.name}"></div><div class="product-info"><div class="product-cat">${p.category}</div><h3>${p.name}</h3><p>${p.desc}</p><div class="actions"><button class="details" onclick="showProduct(${p.id})">View Details</button><button class="enquiry" onclick="ask(${p.id})">Enquiry</button></div></div></article>`).join('')||'<p>No matching products found.</p>';document.getElementById('shop').scrollIntoView({behavior:'smooth'});};
 document.getElementById('categorySelect').onchange=e=>{const v=e.target.value;if(v==='Home & Living'){setFilter('Home & Living')}else setFilter(v)};
 function ask(id){const p=products.find(x=>x.id===id);window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi ShambhoMART, I am interested in "'+p.name+'". Please share current details and offer.')}`,'_blank')}
-function showProduct(id){const p=products.find(x=>x.id===id);const imgs=p.images||[p.image];document.getElementById('modalBody').innerHTML=`<div class="modal-content"><div class="gallery"><div class="gallery-main"><img id="galleryMain" src="${imgs[0]}" alt="${p.name}"></div><div class="gallery-thumbs">${imgs.map((src,i)=>`<button class="gallery-thumb ${i===0?'active':''}" onclick="changeGalleryImage('${src}',this)"><img src="${src}" alt="${p.name} view ${i+1}"></button>`).join('')}</div></div><div><div class="eyebrow">${p.badge} • ${p.category}</div><h2>${p.name}</h2><p>${p.desc}</p><ul>${p.features.map(f=>`<li>✓ ${f}</li>`).join('')}</ul><p><strong>Price:</strong> Check current offer on the partner store. We intentionally do not show fixed prices because offers can change.</p><a href="${p.link}" target="_blank" rel="noopener">Shop Now →</a><a style="margin-left:8px;background:#16a34a" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi ShambhoMART, I want details for '+p.name)}" target="_blank" rel="noopener">WhatsApp Enquiry</a></div></div>`;document.getElementById('modal').classList.add('show')}
-function changeGalleryImage(src,btn){document.getElementById('galleryMain').src=src;document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active'));btn.classList.add('active')}
+function showProduct(id){
+  const p=products.find(x=>x.id===id); if(!p) return;
+  const imgs=(p.images&&p.images.length?p.images:[p.image]).filter(Boolean);
+  const body=document.getElementById('modalBody');
+  body.innerHTML=`<div class="modal-content">
+    <div class="gallery">
+      <div class="gallery-main"><img id="galleryMain" src="${imgs[0]}" alt="${p.name}"></div>
+      <div class="gallery-count">${imgs.length} product images</div>
+      <div class="gallery-thumbs" id="galleryThumbs">${imgs.map((src,i)=>`<button type="button" class="gallery-thumb ${i===0?'active':''}" data-src="${src}" aria-label="Product image ${i+1}"><img src="${src}" alt="${p.name} view ${i+1}"></button>`).join('')}</div>
+    </div>
+    <div class="product-detail-copy"><div class="eyebrow">${p.badge} • ${p.category}</div><h2>${p.name}</h2><p>${p.desc}</p><ul>${p.features.map(f=>`<li>✓ ${f}</li>`).join('')}</ul><p><strong>Price:</strong> Check current offer on the partner store. We intentionally do not show fixed prices because offers can change.</p><div class="detail-actions"><a href="${p.link}" target="_blank" rel="noopener">Shop Now →</a><a class="wa" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi ShambhoMART, I want details for '+p.name)}" target="_blank" rel="noopener">WhatsApp Enquiry</a></div></div>
+  </div>`;
+  document.getElementById('galleryThumbs').addEventListener('click',e=>{
+    const btn=e.target.closest('.gallery-thumb'); if(!btn) return;
+    const main=document.getElementById('galleryMain'); main.src=btn.dataset.src;
+    document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
+  });
+  document.getElementById('modal').classList.add('show');
+  document.body.classList.add('modal-open');
+}
 document.getElementById('closeModal').onclick=()=>document.getElementById('modal').classList.remove('show');document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('show')};
 function updateCart(){document.getElementById('cartCount').textContent=cart.length;const box=document.getElementById('cartItems');box.innerHTML=cart.length?cart.map((id,i)=>{const p=products.find(x=>x.id===id);return `<div class="cart-item"><img src="${p.image}" alt=""><div><h4>${p.name}</h4><small>${p.category}</small></div><button class="remove" onclick="cart.splice(${i},1);saveCart()">Remove</button></div>`}).join(''):'<p style="padding:20px;color:#667085">Your selection is empty.</p>'}
 function saveCart(){localStorage.setItem('shambhoCartV6',JSON.stringify(cart));updateCart()}
