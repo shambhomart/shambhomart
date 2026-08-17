@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShambhoMART — Quality You Can Trust</title>
+  <meta name="description" content="ShambhoMART — curated products, trusted quality and easy WhatsApp ordering.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topbar">✨ Trending picks • Special offers • Easy WhatsApp ordering</div>
+
+  <header class="header">
+    <a class="brand" href="#home" aria-label="ShambhoMART home">
+      <div class="logo-mark">S</div>
+      <div>
+        <strong>Shambho<span>MART</span></strong>
+        <small>Quality You Can Trust.</small>
+      </div>
+    </a>
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#categories">Categories</a>
+      <a href="#why-us">Why ShambhoMART</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cart-btn" id="cartBtn">🛒 <span id="cartCount">0</span></button>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="pill">SMART SHOPPING • TRUSTED PICKS</div>
+        <h1>Find products you'll<br><span>love to use.</span></h1>
+        <p>Curated everyday products with a focus on quality, usefulness and value. Browse our latest picks and start your order on WhatsApp.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#shop">Explore Products</a>
+          <a class="btn secondary" href="https://wa.me/917498169710?text=Hi%20ShambhoMART%2C%20I%20want%20to%20know%20about%20your%20products." target="_blank" rel="noopener">WhatsApp Us</a>
+        </div>
+        <div class="trust-row">
+          <span>✓ Curated Picks</span><span>✓ Easy Ordering</span><span>✓ Customer Support</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="glow"></div>
+        <div class="hero-card hero-card-back">TRENDING</div>
+        <div class="hero-card hero-card-main">
+          <div class="mini-label">SHAMBHO</div>
+          <div class="big-s">S</div>
+          <div class="hero-card-title">MART</div>
+          <div class="hero-card-sub">Quality You Can Trust.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="section-head">
+        <div><span class="eyebrow">SHOP BY CATEGORY</span><h2>Made for everyday life.</h2></div>
+      </div>
+      <div class="category-grid">
+        <button class="category-card" data-filter="Kitchen"><span>🍳</span><b>Kitchen</b><small>Smart kitchen helpers</small></button>
+        <button class="category-card" data-filter="Home"><span>🏠</span><b>Home & Living</b><small>Useful everyday products</small></button>
+        <button class="category-card" data-filter="Storage"><span>📦</span><b>Storage</b><small>Organise with ease</small></button>
+        <button class="category-card" data-filter="Lifestyle"><span>✨</span><b>Lifestyle</b><small>Trending useful picks</small></button>
+      </div>
+    </section>
+
+    <section class="section products-section" id="shop">
+      <div class="section-head">
+        <div><span class="eyebrow">FEATURED COLLECTION</span><h2>Trending products</h2></div>
+        <div class="filters">
+          <button class="filter active" data-filter="All">All</button>
+          <button class="filter" data-filter="Kitchen">Kitchen</button>
+          <button class="filter" data-filter="Home">Home</button>
+          <button class="filter" data-filter="Storage">Storage</button>
+          <button class="filter" data-filter="Lifestyle">Lifestyle</button>
+        </div>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="why" id="why-us">
+      <div>
+        <span class="eyebrow">WHY SHAMBHOMART</span>
+        <h2>Simple shopping.<br><span>Better choices.</span></h2>
+      </div>
+      <div class="why-grid">
+        <div><b>01</b><h3>Curated</h3><p>We focus on useful, relevant products instead of overwhelming you with endless listings.</p></div>
+        <div><b>02</b><h3>Trust-first</h3><p>Clear product information, practical benefits and direct customer communication.</p></div>
+        <div><b>03</b><h3>WhatsApp friendly</h3><p>Ask about a product or start an order directly from your phone.</p></div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div>
+        <span class="eyebrow">NEED HELP?</span>
+        <h2>Not sure what to buy?</h2>
+        <p>Message ShambhoMART and tell us what you are looking for. We'll help you find the right pick.</p>
+      </div>
+      <a class="btn primary" href="https://wa.me/917498169710?text=Hi%20ShambhoMART%2C%20please%20help%20me%20choose%20a%20product." target="_blank" rel="noopener">Chat on WhatsApp →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand"><div class="logo-mark">S</div><div><strong>ShambhoMART</strong><small>Quality You Can Trust.</small></div></div>
+    <div class="footer-links"><a href="#shop">Shop</a><a href="#categories">Categories</a><a href="#why-us">About</a><a href="https://wa.me/917498169710" target="_blank" rel="noopener">WhatsApp</a></div>
+    <p>© <span id="year"></span> ShambhoMART. All rights reserved.</p>
+  </footer>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-head"><h3>Your Selection</h3><button id="closeCart">×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-bottom">
+      <p>Ready to order? We'll open WhatsApp with your selected products.</p>
+      <button class="btn primary full" id="whatsappOrder">Order via WhatsApp →</button>
+      <button class="clear" id="clearCart">Clear selection</button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
