@@ -23,3 +23,7 @@ Recommended:
 2. Cloudflare Pages — static HTML can be deployed directly and is available on Cloudflare plans.
 
 No paid hosting/server is required for this version.
+
+
+## Product added in V2
+Airtight Kitchen Storage Container – 1.1L, with five supplied product images and Flipkart shop link. No fixed price is displayed.

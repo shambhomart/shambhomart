@@ -1,14 +1,25 @@
 const WHATSAPP = "917498169710";
 
 const products = [
-  {id:1, name:"Multi-Purpose Kitchen Chopper", category:"Kitchen", icon:"🥗", badge:"Bestseller", desc:"Fast, convenient chopping for everyday kitchen prep."},
-  {id:2, name:"Smart Oil Dispenser", category:"Kitchen", icon:"🫗", badge:"Trending", desc:"A cleaner and more controlled way to pour cooking oil."},
-  {id:3, name:"Kitchen Storage Container Set", category:"Storage", icon:"🫙", badge:"Premium Pick", desc:"Keep pantry essentials organised, fresh and easy to access."},
-  {id:4, name:"Everyday Water Bottle", category:"Lifestyle", icon:"💧", badge:"Popular", desc:"A practical bottle for home, work, travel and daily use."},
-  {id:5, name:"Home Organiser", category:"Home", icon:"🧺", badge:"Special Offer", desc:"Simple storage for a cleaner, more organised home."},
-  {id:6, name:"Manual Food Prep Tool", category:"Kitchen", icon:"🔪", badge:"Trending", desc:"A useful everyday helper for quicker food preparation."},
-  {id:7, name:"Multipurpose Storage Box", category:"Storage", icon:"📦", badge:"Smart Pick", desc:"Neat storage for household essentials and accessories."},
-  {id:8, name:"Daily Utility Pick", category:"Lifestyle", icon:"✨", badge:"New", desc:"A practical product selected for everyday convenience."}
+  {
+    id:1,
+    name:"Airtight Kitchen Storage Container – 1.1L",
+    category:"Storage",
+    icon:"🫙",
+    badge:"Bestseller",
+    desc:"Smart, transparent storage for grains, snacks, spices and everyday kitchen essentials.",
+    images:[
+      "assets/storage-container-1.jpeg",
+      "assets/storage-container-2.jpeg",
+      "assets/storage-container-3.jpeg",
+      "assets/storage-container-4.jpeg",
+      "assets/storage-container-5.jpeg"
+    ],
+    features:["Airtight Seal","BPA Free Material","Stackable Design","Transparent Body"],
+    size:"1.1 L",
+    dimensions:"16 cm height × 10.5 cm width",
+    link:"https://fktr.in/A00I4I7"
+  }
 ];
 
 let cart = JSON.parse(localStorage.getItem("shambhoCart") || "[]");
@@ -23,18 +34,45 @@ function renderProducts(){
   const list = activeFilter === "All" ? products : products.filter(p => p.category === activeFilter);
   grid.innerHTML = list.map(p => `
     <article class="product">
-      <div class="product-image"><span class="badge">${p.badge}</span><span>${p.icon}</span></div>
+      <div class="product-image">
+        <span class="badge">${p.badge}</span>
+        ${p.images ? `<img src="${p.images[0]}" alt="${p.name}">` : `<span>${p.icon}</span>`}
+      </div>
       <div class="product-info">
         <div class="product-cat">${p.category}</div>
         <h3>${p.name}</h3>
         <p>${p.desc}</p>
         <div class="product-actions">
-          <button class="add" onclick="addToCart(${p.id})">Add to Selection</button>
-          <button class="ask" onclick="askProduct(${p.id})">Ask</button>
+          <button class="add" onclick="showProduct(${p.id})">View Product</button>
+          <button class="ask" onclick="askProduct(${p.id})">WhatsApp</button>
         </div>
       </div>
     </article>`).join("");
 }
+
+
+function showProduct(id){
+  const p = products.find(x => x.id === id);
+  if(!p) return;
+  const modal = document.getElementById("productModal");
+  modal.querySelector(".modal-gallery").innerHTML = p.images.map((img,i) =>
+    `<button class="thumb ${i===0?'selected':''}" onclick="selectProductImage('${img}', this)">
+      <img src="${img}" alt="${p.name} image ${i+1}">
+    </button>`).join("");
+  modal.querySelector(".main-product-image").src = p.images[0];
+  modal.querySelector(".modal-title").textContent = p.name;
+  modal.querySelector(".modal-desc").textContent = p.desc;
+  modal.querySelector(".modal-features").innerHTML = p.features.map(x=>`<li>✓ ${x}</li>`).join("");
+  modal.querySelector(".modal-size").textContent = `${p.size} • ${p.dimensions}`;
+  modal.querySelector(".modal-shop").href = p.link;
+  modal.classList.add("show");
+}
+function selectProductImage(img, btn){
+  document.querySelector(".main-product-image").src = img;
+  document.querySelectorAll(".thumb").forEach(x=>x.classList.remove("selected"));
+  btn.classList.add("selected");
+}
+function closeProduct(){ document.getElementById("productModal").classList.remove("show"); }
 
 function save(){ localStorage.setItem("shambhoCart", JSON.stringify(cart)); updateCart(); }
 function updateCart(){
@@ -77,3 +115,8 @@ document.getElementById("whatsappOrder").onclick=()=>{
 };
 document.getElementById("year").textContent=new Date().getFullYear();
 renderProducts(); updateCart();
+
+document.getElementById("closeProduct").onclick=closeProduct;
+document.getElementById("productModal").addEventListener("click", e => {
+  if(e.target.id === "productModal") closeProduct();
+});
