@@ -20,21 +20,36 @@ function showProduct(id){
   const body=document.getElementById('modalBody');
   body.innerHTML=`<div class="modal-content">
     <div class="gallery">
-      <div class="gallery-main"><img id="galleryMain" src="${imgs[0]}" alt="${p.name}"></div>
+      <div class="gallery-main" id="galleryZoomBox"><img id="galleryMain" src="${imgs[0]}" alt="${p.name}"></div>
+      <div class="gallery-zoom-hint">Move cursor over image to zoom • Click to lock</div>
       <div class="gallery-count">${imgs.length} product images</div>
       <div class="gallery-thumbs" id="galleryThumbs">${imgs.map((src,i)=>`<button type="button" class="gallery-thumb ${i===0?'active':''}" data-src="${src}" aria-label="Product image ${i+1}"><img src="${src}" alt="${p.name} view ${i+1}"></button>`).join('')}</div>
     </div>
     <div class="product-detail-copy"><div class="eyebrow">${p.badge} • ${p.category}</div><h2>${p.name}</h2><p>${p.desc}</p><ul>${p.features.map(f=>`<li>✓ ${f}</li>`).join('')}</ul><p><strong>Price:</strong> Check current offer on the partner store. We intentionally do not show fixed prices because offers can change.</p><div class="detail-actions"><a href="${p.link}" target="_blank" rel="noopener">Shop Now →</a><a class="wa" href="https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi ShambhoMART, I want details for '+p.name)}" target="_blank" rel="noopener">WhatsApp Enquiry</a></div></div>
   </div>`;
-  document.getElementById('galleryThumbs').addEventListener('click',e=>{
+  const thumbs=document.getElementById('galleryThumbs');
+  thumbs.addEventListener('click',e=>{
     const btn=e.target.closest('.gallery-thumb'); if(!btn) return;
-    const main=document.getElementById('galleryMain'); main.src=btn.dataset.src;
+    const main=document.getElementById('galleryMain');
+    main.src=btn.dataset.src;
     document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
+    const box=document.getElementById('galleryZoomBox'); box.classList.remove('zoom-locked','zoom-hover'); main.style.transformOrigin='center center';
   });
+  const box=document.getElementById('galleryZoomBox');
+  const main=document.getElementById('galleryMain');
+  box.addEventListener('mousemove',e=>{
+    const r=box.getBoundingClientRect();
+    const x=Math.max(0,Math.min(100,((e.clientX-r.left)/r.width)*100));
+    const y=Math.max(0,Math.min(100,((e.clientY-r.top)/r.height)*100));
+    main.style.transformOrigin=`${x}% ${y}%`;
+    box.classList.add('zoom-hover');
+  });
+  box.addEventListener('mouseleave',()=>{if(!box.classList.contains('zoom-locked')) box.classList.remove('zoom-hover');});
+  box.addEventListener('click',()=>box.classList.toggle('zoom-locked'));
   document.getElementById('modal').classList.add('show');
   document.body.classList.add('modal-open');
 }
-document.getElementById('closeModal').onclick=()=>document.getElementById('modal').classList.remove('show');document.getElementById('modal').onclick=e=>{if(e.target.id==='modal')e.currentTarget.classList.remove('show')};
+document.getElementById('closeModal').onclick=()=>{document.getElementById('modal').classList.remove('show');document.body.classList.remove('modal-open')};document.getElementById('modal').onclick=e=>{if(e.target.id==='modal'){e.currentTarget.classList.remove('show');document.body.classList.remove('modal-open')}};
 function updateCart(){document.getElementById('cartCount').textContent=cart.length;const box=document.getElementById('cartItems');box.innerHTML=cart.length?cart.map((id,i)=>{const p=products.find(x=>x.id===id);return `<div class="cart-item"><img src="${p.image}" alt=""><div><h4>${p.name}</h4><small>${p.category}</small></div><button class="remove" onclick="cart.splice(${i},1);saveCart()">Remove</button></div>`}).join(''):'<p style="padding:20px;color:#667085">Your selection is empty.</p>'}
 function saveCart(){localStorage.setItem('shambhoCartV6',JSON.stringify(cart));updateCart()}
 document.getElementById('cartBtn').onclick=()=>{document.getElementById('cartDrawer').classList.add('open');document.getElementById('overlay').classList.add('show')};document.getElementById('closeCart').onclick=closeCart;document.getElementById('overlay').onclick=closeCart;function closeCart(){document.getElementById('cartDrawer').classList.remove('open');document.getElementById('overlay').classList.remove('show')}
