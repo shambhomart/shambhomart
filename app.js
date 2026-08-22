@@ -30,24 +30,29 @@ function showProduct(id){
   const thumbs=document.getElementById('galleryThumbs');
   thumbs.addEventListener('click',e=>{
     const btn=e.target.closest('.gallery-thumb'); if(!btn) return;
-    const main=document.getElementById('galleryMain');
-    main.src=btn.dataset.src;
+    const main=document.getElementById('galleryMain'); main.src=btn.dataset.src;
     document.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active')); btn.classList.add('active');
     const box=document.getElementById('galleryZoomBox'); box.classList.remove('zoom-locked','zoom-hover'); main.style.transformOrigin='center center';
   });
-  const box=document.getElementById('galleryZoomBox');
-  const main=document.getElementById('galleryMain');
-  box.addEventListener('mousemove',e=>{
-    const r=box.getBoundingClientRect();
-    const x=Math.max(0,Math.min(100,((e.clientX-r.left)/r.width)*100));
-    const y=Math.max(0,Math.min(100,((e.clientY-r.top)/r.height)*100));
-    main.style.transformOrigin=`${x}% ${y}%`;
-    box.classList.add('zoom-hover');
-  });
-  box.addEventListener('mouseleave',()=>{if(!box.classList.contains('zoom-locked')) box.classList.remove('zoom-hover');});
+  const box=document.getElementById('galleryZoomBox'); const main=document.getElementById('galleryMain');
+  box.addEventListener('mousemove',e=>{const r=box.getBoundingClientRect();const x=Math.max(0,Math.min(100,((e.clientX-r.left)/r.width)*100));const y=Math.max(0,Math.min(100,((e.clientY-r.top)/r.height)*100));main.style.transformOrigin=`${x}% ${y}%`;box.classList.add('zoom-hover')});
+  box.addEventListener('mouseleave',()=>{if(!box.classList.contains('zoom-locked'))box.classList.remove('zoom-hover')});
   box.addEventListener('click',()=>box.classList.toggle('zoom-locked'));
-  document.getElementById('modal').classList.add('show');
-  document.body.classList.add('modal-open');
+  // Exploded/full image view: clicking the selected main image opens a larger view.
+  box.addEventListener('dblclick',()=>openExploded(main.src,p.name));
+  document.getElementById('modal').classList.add('show'); document.body.classList.add('modal-open');
+}
+function openExploded(src,name){
+  let viewer=document.getElementById('explodedViewer');
+  if(!viewer){viewer=document.createElement('div');viewer.id='explodedViewer';viewer.className='exploded-viewer';viewer.innerHTML='<button class="exploded-close" aria-label="Close">×</button><div class="exploded-image-box"><img id="explodedImage" alt=""><div class="exploded-hint">Move cursor over image to zoom • Click to lock</div></div>';document.body.appendChild(viewer);
+    const close=()=>{viewer.classList.remove('show');document.body.classList.remove('exploded-open')}; viewer.querySelector('.exploded-close').onclick=close; viewer.onclick=e=>{if(e.target===viewer)close()};
+    const eb=viewer.querySelector('.exploded-image-box'),ei=viewer.querySelector('#explodedImage');
+    eb.addEventListener('mousemove',e=>{const r=eb.getBoundingClientRect();const x=Math.max(0,Math.min(100,((e.clientX-r.left)/r.width)*100));const y=Math.max(0,Math.min(100,((e.clientY-r.top)/r.height)*100));ei.style.transformOrigin=`${x}% ${y}%`;eb.classList.add('zoom-hover')});
+    eb.addEventListener('mouseleave',()=>{if(!eb.classList.contains('zoom-locked'))eb.classList.remove('zoom-hover')});
+    eb.addEventListener('click',()=>eb.classList.toggle('zoom-locked'));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+  }
+  viewer.querySelector('#explodedImage').src=src; viewer.querySelector('#explodedImage').alt=name; viewer.querySelector('.exploded-image-box').classList.remove('zoom-hover','zoom-locked'); viewer.classList.add('show'); document.body.classList.add('exploded-open');
 }
 document.getElementById('closeModal').onclick=()=>{document.getElementById('modal').classList.remove('show');document.body.classList.remove('modal-open')};document.getElementById('modal').onclick=e=>{if(e.target.id==='modal'){e.currentTarget.classList.remove('show');document.body.classList.remove('modal-open')}};
 function updateCart(){document.getElementById('cartCount').textContent=cart.length;const box=document.getElementById('cartItems');box.innerHTML=cart.length?cart.map((id,i)=>{const p=products.find(x=>x.id===id);return `<div class="cart-item"><img src="${p.image}" alt=""><div><h4>${p.name}</h4><small>${p.category}</small></div><button class="remove" onclick="cart.splice(${i},1);saveCart()">Remove</button></div>`}).join(''):'<p style="padding:20px;color:#667085">Your selection is empty.</p>'}
