@@ -55,6 +55,22 @@
     gallery.onclick=e=>{const btn=e.target.closest('.gallery-thumb');if(!btn)return;main.src=btn.dataset.src;gallery.querySelectorAll('.gallery-thumb').forEach(x=>x.classList.remove('active'));btn.classList.add('active')};
     const count=document.querySelector('.gallery-count');if(count)count.textContent=`${imgs.length} product images`;
   }
+  function addSocialLinks(){
+    const footer=document.querySelector('footer');
+    if(!footer||footer.querySelector('.social-links'))return;
+    const box=document.createElement('div');
+    box.className='social-links';
+    box.setAttribute('aria-label','ShambhoMART social media');
+    box.innerHTML='<span>Follow Us</span><a href="https://www.facebook.com/ShambhoMart" target="_blank" rel="noopener" aria-label="ShambhoMART Facebook">Facebook</a><a href="https://www.instagram.com/shambhomart/" target="_blank" rel="noopener" aria-label="ShambhoMART Instagram">Instagram</a>';
+    footer.appendChild(box);
+    if(!document.getElementById('shambhomart-social-schema')){
+      const script=document.createElement('script');
+      script.id='shambhomart-social-schema';
+      script.type='application/ld+json';
+      script.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"ShambhoMART","url":"https://shambhomart.github.io/shambhomart/","sameAs":["https://www.facebook.com/ShambhoMart","https://www.instagram.com/shambhomart/"]});
+      document.head.appendChild(script);
+    }
+  }
   const observer=new MutationObserver(()=>{refreshCards();if(document.getElementById('modal')?.classList.contains('show'))setTimeout(refreshModal,50)});
   const grid=document.getElementById('productGrid');
   if(grid)observer.observe(grid,{childList:true,subtree:true});
@@ -62,4 +78,5 @@
     if(e.target.closest('.details'))setTimeout(refreshModal,80);
   });
   refreshCards();
+  addSocialLinks();
 })();
